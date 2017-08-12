@@ -16,13 +16,14 @@ RUN curl -o ~/miniconda.sh -O https://repo.continuum.io/miniconda/Miniconda3-lat
      rm ~/miniconda.sh
 ENV PATH /opt/conda/bin:$PATH
 ENV CMAKE_PREFIX_PATH /opt/conda/
-RUN conda install numpy pyyaml mkl setuptools cmake gcc cffi && \
-    conda install -c soumith magma-cuda80 && \
-    conda clean -ya && \
-    cd && \
+RUN conda install numpy pyyaml mkl setuptools cmake gcc cffi
+RUN conda install -c soumith magma-cuda80
+RUN conda clean -ya
+RUN cd && \
     git clone https://github.com/pytorch/pytorch && \
     cd pytorch && \
-    python setup.py install
+    python setup.py install && \
+    cd .. && rm -rf pytorch
 
 ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
 
