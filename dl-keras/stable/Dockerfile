@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	 curl \
 	 ca-certificates \
 	 libjpeg-dev \
-	 libpng-dev
+	 libpng-dev \
 	 python3-pip && \
 	 rm -rf /var/lib/apt/lists/*
 RUN pip install keras
