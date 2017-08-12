@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 RUN apt-get update && apt-get install -y --no-install-recommends \
