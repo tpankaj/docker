@@ -13,13 +13,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -o ~/miniconda.sh -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
-     rm ~/miniconda.sh && \
-     /opt/conda/bin/conda install conda-build && \
-     /opt/conda/bin/conda create -y --name pytorch-py35 python=3.5.2 numpy pyyaml scipy ipython mkl&& \
-     /opt/conda/bin/conda clean -ya
-     ENV PATH /opt/conda/envs/pytorch-py35/bin:$PATH
-     RUN conda install --name pytorch-py35 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
-     RUN conda install --name pytorch-py35 pytorch torchvision cuda80 -c soumith && /opt/conda/bin/conda clean -ya
+     rm ~/miniconda.sh
+ENV PATH /opt/conda/bin:$PATH
+ENV CMAKE_PREFIX_PATH /opt/conda/
+RUN conda install numpy pyyaml mkl setuptools cmake gcc cffi && \
+    conda install -c soumith magma-cuda80 && \
+    conda clean -ya && \
+    cd && \
+    git clone https://github.com/pytorch/pytorch && \
+    cd pytorch && \
+    python setup.py install
 
 ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
 
