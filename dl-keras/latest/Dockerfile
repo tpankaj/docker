@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	 ca-certificates \
 	 libjpeg-dev \
 	 libpng-dev \
-	 python3-pip && \
+	 python3-pip \
+	 python3-setuptools && \
 	 rm -rf /var/lib/apt/lists/*
 RUN cd && git clone http://github.com/fchollet/keras && \
     cd keras && python3 setup.py install && \
