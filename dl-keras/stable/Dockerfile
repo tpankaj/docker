@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	 libpng-dev \
 	 python3-pip && \
 	 rm -rf /var/lib/apt/lists/*
-RUN pip install keras
+RUN pip3 install keras
 
 WORKDIR /workspace
 RUN chmod -R a+w /workspace

@@ -15,14 +15,9 @@ RUN curl -o ~/miniconda.sh -O https://repo.continuum.io/miniconda/Miniconda3-lat
      rm ~/miniconda.sh
 ENV PATH /opt/conda/bin:$PATH
 ENV CMAKE_PREFIX_PATH /opt/conda/
-RUN conda install numpy pyyaml mkl setuptools cmake gcc cffi
+RUN conda install numpy pyyaml scipy ipython mkl
 RUN conda install -c soumith magma-cuda80
-RUN conda clean -ya
-RUN cd && \
-    git clone https://github.com/pytorch/pytorch && \
-    cd pytorch && \
-    python setup.py install && \
-    cd .. && rm -rf pytorch
+RUN conda install pytorch torchvision cuda80 -c soumith
 
 WORKDIR /workspace
 RUN chmod -R a+w /workspace
