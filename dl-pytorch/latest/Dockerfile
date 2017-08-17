@@ -15,7 +15,7 @@ RUN curl -o ~/miniconda.sh -O https://repo.continuum.io/miniconda/Miniconda3-lat
      rm ~/miniconda.sh
 ENV PATH /opt/conda/bin:$PATH
 ENV CMAKE_PREFIX_PATH /opt/conda/
-RUN conda install numpy pyyaml scipy ipython mkl
+RUN conda install numpy pyyaml scipy matplotlib ipython mkl h5py pyserial termcolor opencv pandas
 RUN conda install -c soumith magma-cuda80
 RUN conda install pytorch torchvision cuda80 -c soumith
 
