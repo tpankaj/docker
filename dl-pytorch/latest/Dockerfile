@@ -1,5 +1,7 @@
 FROM nvidia/cuda
 
+COPY ./keyboard /etc/default/keyboard
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
          git \
